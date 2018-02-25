@@ -87,14 +87,18 @@ export default class ReactDashboardLayout extends React.Component {
       breakpoints: this.props.breakpoints,
       layoutWidth: this.state.width
     })
+    
+    // determine number of columns for the layout
     const layoutCols = breakpoint ? breakpoint.cols : (this.props.cols || DEFAULT_NO_OF_COLS)
 
+    // calculate current width and height of a cell
     const cellWidth = this.state.width / layoutCols
     const cellHeight = (this.props.rows) ? (this.state.height / this.props.rows) : cellWidth
 
     let grid = []
     let minRow = 0
 
+    // clone all child components and set position and dimensions to absolute values
     const children = React.Children.map(this.props.children, (child, i) => {
         const childProps = {...child.props}
 
@@ -110,16 +114,16 @@ export default class ReactDashboardLayout extends React.Component {
           childWidth: childProps.width
         })
 
-        // if fill layout and child is below max screen width, then don't show it
+        // if layout is of type 'fill screen' and child is below max screen height, then don't show it
         if(this.props.rows && this.props.rows <= childPosition.top) {
           return null
         }
 
         minRow = childPosition.top
 
-        // add new rows if grid is not high enough
-        if((childPosition.top+childProps.height) > grid.length) {
-          for (let r = grid.length; r < (childPosition.top+childProps.height); r++) {
+        // add new rows to the grid if the grid is not yet 'high' enough
+        if((childPosition.top + childProps.height) > grid.length) {
+          for (let r = grid.length; r < (childPosition.top + childProps.height); r++) {
             const newRow = []
             for (let c = 0; c < layoutCols; c++) {
               newRow.push(FREE_CELL)
@@ -128,7 +132,7 @@ export default class ReactDashboardLayout extends React.Component {
           }
         }
 
-        // mark grid cells as filled with dimensions current child
+        // mark grid cells as filled with dimensions of current child
         for (let r = 0; r < childProps.height; r++) {
           for (let c = 0; c < childProps.width; c++) {
             if( (childPosition.top+r) < grid.length && (childPosition.left+c) < grid[0].length ) {
@@ -137,6 +141,7 @@ export default class ReactDashboardLayout extends React.Component {
           }
         }
 
+        // define new style properties
         const style = {
           ...childProps.style,
           boxSizing: 'border-box',
@@ -146,9 +151,9 @@ export default class ReactDashboardLayout extends React.Component {
           width: (childProps.width * cellWidth) + 'px',
           top: (childPosition.top * cellHeight),
           height: (childProps.height * cellHeight) + 'px',
-
         }
 
+        // clone and return child component with new style propeties
         return React.cloneElement(child, {style, key: 'child-'+i})
     })
 

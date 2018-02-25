@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 
+const DEFAULT_NO_OF_COLS = 12
+
 const FREE_CELL = 0
 const FILLED_CELL = 1
 
@@ -85,7 +87,7 @@ export default class ReactDashboardLayout extends React.Component {
       breakpoints: this.props.breakpoints,
       layoutWidth: this.state.width
     })
-    const layoutCols = breakpoint ? breakpoint.cols : this.props.cols
+    const layoutCols = breakpoint ? breakpoint.cols : (this.props.cols || DEFAULT_NO_OF_COLS)
 
     const cellWidth = this.state.width / layoutCols
     const cellHeight = (this.props.rows) ? (this.state.height / this.props.rows) : cellWidth

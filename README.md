@@ -49,21 +49,22 @@ render() {
 
 #### ReactDashboardLayout
 ```
-  // the number of columns
+  // the number of columns.
   cols: ?number = 12,
 
-  // the number of rows (optional, if set layout will fill screen, otherwise will be scrollable layout)
+  // the number of rows. Optional, if set layout will fill screen, otherwise it will be a scrollable layout.
   rows: ?number,
 
-  //
+  // controls the responsiveness of the layout, so that having a different number of columns based on the screen width. If set then, cols property is ignored.
+  // Example:  [ {width: 768, cols: 6}, {width: 1024, cols: 12}, {width: 480, cols: 3} ]
   breakpoints: ?Array,
 ```
 
-#### Children inside the layout
+#### Child component inside the layout
 ```
-  // the width of the child
+  // the width of the child, meaning how many columns it will take of the layout.
   width: number,
 
-  // the height of the child
+  // the height of the child. If number of rows is set for the layout, then height of this child means how many rows it will take of the layout. Else height is relative to the width of the child. E.g. width=4 and height=2 would mean, that the child's height is always 50% of its width.
   height: number,
 ```

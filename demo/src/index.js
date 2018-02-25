@@ -24,6 +24,27 @@ const examples = [
   { name: 'Example 9', component: Example9 },
 ]
 
+
+const styles = {
+  container: {
+    display: 'flex',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    padding: 20
+  },
+  navigation: {
+    width: '200px',
+    height: '100%'
+  },
+  content: {
+    flex: 1,
+    height: '100%'
+  }
+}
+
 class Demo extends Component {
 
   constructor(props) {
@@ -36,9 +57,9 @@ class Demo extends Component {
   render() {
     const Example = examples[this.state.selectedExample].component
     return (
-      <div style={{display: 'flex', position: 'absolute', top:0, left:0, right:0, bottom:0, padding: 20}}>
+      <div style={styles.container}>
 
-        <div style={{width:'200px', height: '100%'}}>
+        <div style={styles.navigation}>
           {examples.map((item, i) =>
             <div key={i} onClick={() => this.setState({selectedExample: i})} style={{color: 'blue', cursor: 'pointer'}}>
               {this.state.selectedExample === i ? <b>{item.name}</b>: item.name}
@@ -46,7 +67,7 @@ class Demo extends Component {
           )}
         </div>
 
-        <div style={{flex: 1, height: '100%'}}>
+        <div style={styles.content}>
           <Example />
         </div>
 

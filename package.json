@@ -1,6 +1,6 @@
 {
   "name": "react-dashboard-layout",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "react-dashboard-layout react component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -30,7 +30,7 @@
   "author": "Mathias Schaeffner",
   "homepage": "https://github.com/mschaeffner/react-dashboard-layout",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/mschaeffner/react-dashboard-layout",
   "keywords": [
     "react-component",
     "react",

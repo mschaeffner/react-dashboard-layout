@@ -28,15 +28,15 @@ render() {
     rows={12}
   >
 
-    <div width={2} height={2}>
+    <div data-grid={{w:2, h:2}}>
       content
     </div>
 
-    <div width={2} height={2}>
+    <div data-grid={{w:2, h:2}}>
       content
     </div>
 
-    <div width={2} height={2}>
+    <div data-grid={{w:2, h:2}}>
       content
     </div>
 
@@ -48,7 +48,7 @@ render() {
 ## Properties
 
 #### ReactDashboardLayout
-```
+```javascript
   // the number of columns.
   cols: ?number = 12,
 
@@ -61,10 +61,10 @@ render() {
 ```
 
 #### Child component inside the layout
-```
+```javascript
   // the width of the child, meaning how many columns it will take of the layout.
-  width: number,
+  w: number,
 
-  // the height of the child. If number of rows is set for the layout, then height of this child means how many rows it will take of the layout. Else height is relative to the width of the child. E.g. width=4 and height=2 would mean, that the child's height is always 50% of its width.
-  height: number,
+  // the height of the child. If number of rows is set for the layout, then height of this child means how many rows it will take of the layout. Else height is relative to the width of the child. E.g. w=4 and h=2 would mean, that the child's height is always 50% of its width.
+  h: number,
 ```

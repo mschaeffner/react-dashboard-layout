@@ -15,29 +15,25 @@ export default () =>
   <ReactDashboardLayout cols={10} rows={10}>
 
     <Tile
-      width={10}
-      height={5}
+      data-grid={{w:10, h:5}}
       text="100% x 50%"
       style={style}
     />
 
     <Tile
-      width={4}
-      height={5}
+      data-grid={{w:4, h:5}}
       text="40% x 50%"
       style={style}
     />
 
     <Tile
-      width={2}
-      height={5}
+      data-grid={{w:2, h:5}}
       text="20% x 50%"
       style={style}
     />
 
     <Tile
-      width={4}
-      height={5}
+      data-grid={{w:4, h:5}}
       text="40% x 50%"
       style={style}
     />

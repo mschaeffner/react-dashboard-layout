@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom'
 
 const DEFAULT_NO_OF_COLS = 12
 
+const DEFAULT_CHILD_HEIGHT = 1
+const DEFAULT_CHILD_WIDTH = 1
+
 const FREE_CELL = 0
 const FILLED_CELL = 1
 
@@ -100,19 +103,16 @@ export default class ReactDashboardLayout extends React.Component {
 
     // clone all child components and set position and dimensions to absolute values
     const children = React.Children.map(this.props.children, (child, i) => {
-        const childProps = {...child.props}
+
+        const gridProp = child.props['data-grid']
+        const childHeight = (gridProp && gridProp.h) || DEFAULT_CHILD_HEIGHT
+        const childWidthTemp = (gridProp && gridProp.w) || DEFAULT_CHILD_WIDTH
 
         // if child width is greater than number of cols in layout, then change child width
-        if(childProps.width > layoutCols) {
-          childProps.width = layoutCols
-        }
+        const childWidth = (childWidthTemp > layoutCols) ? layoutCols : childWidthTemp
 
         // get child position
-        const childPosition = calculateChildPosition({
-          grid,
-          minRow,
-          childWidth: childProps.width
-        })
+        const childPosition = calculateChildPosition({grid, minRow, childWidth})
 
         // if layout is of type 'fill screen' and child is below max screen height, then don't show it
         if(this.props.rows && this.props.rows <= childPosition.top) {
@@ -122,8 +122,8 @@ export default class ReactDashboardLayout extends React.Component {
         minRow = childPosition.top
 
         // add new rows to the grid if the grid is not yet 'high' enough
-        if((childPosition.top + childProps.height) > grid.length) {
-          for (let r = grid.length; r < (childPosition.top + childProps.height); r++) {
+        if((childPosition.top + childHeight) > grid.length) {
+          for (let r = grid.length; r < (childPosition.top + childHeight); r++) {
             const newRow = []
             for (let c = 0; c < layoutCols; c++) {
               newRow.push(FREE_CELL)
@@ -133,8 +133,8 @@ export default class ReactDashboardLayout extends React.Component {
         }
 
         // mark grid cells as filled with dimensions of current child
-        for (let r = 0; r < childProps.height; r++) {
-          for (let c = 0; c < childProps.width; c++) {
+        for (let r = 0; r < childHeight; r++) {
+          for (let c = 0; c < childWidth; c++) {
             if( (childPosition.top+r) < grid.length && (childPosition.left+c) < grid[0].length ) {
               grid[childPosition.top+r][childPosition.left+c] = FILLED_CELL
             }
@@ -143,14 +143,14 @@ export default class ReactDashboardLayout extends React.Component {
 
         // define new style properties
         const style = {
-          ...childProps.style,
+          ...child.props.style,
           boxSizing: 'border-box',
           overflow: 'hidden',
           position: 'absolute',
           left: (childPosition.left * cellWidth),
-          width: (childProps.width * cellWidth) + 'px',
+          width: (childWidth * cellWidth) + 'px',
           top: (childPosition.top * cellHeight),
-          height: (childProps.height * cellHeight) + 'px',
+          height: (childHeight * cellHeight) + 'px',
         }
 
         // clone and return child component with new style propeties

@@ -15,57 +15,49 @@ export default () =>
   <ReactDashboardLayout cols={8}>
 
     <Tile
-      width={2}
-      height={3}
+      data-grid={{w:2, h:3}}
       text="2 x 3"
       style={style}
     />
 
     <Tile
-      width={2}
-      height={3}
+      data-grid={{w:2, h:3}}
       text="2 x 3"
       style={style}
     />
 
     <Tile
-      width={2}
-      height={3}
+      data-grid={{w:2, h:3}}
       text="2 x 3"
       style={style}
     />
 
     <Tile
-      width={2}
-      height={3}
+      data-grid={{w:2, h:3}}
       text="2 x 3"
       style={style}
     />
 
     <Tile
-      width={2}
-      height={3}
+      data-grid={{w:2, h:3}}
       text="2 x 3"
       style={style}
     />
 
     <Tile
-      width={2}
-      height={3}
+      data-grid={{w:2, h:3}}
       text="2 x 3"
       style={style}
     />
 
     <Tile
-      width={2}
-      height={3}
+      data-grid={{w:2, h:3}}
       text="2 x 3"
       style={style}
     />
 
     <Tile
-      width={2}
-      height={3}
+      data-grid={{w:2, h:3}}
       text="2 x 3"
       style={style}
     />

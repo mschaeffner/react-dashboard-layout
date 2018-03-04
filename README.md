@@ -58,6 +58,10 @@ render() {
   // controls the responsiveness of the layout, so that having a different number of columns based on the screen width. If set then, cols property is ignored.
   // Example:  [ {width: 768, cols: 6}, {width: 1024, cols: 12}, {width: 480, cols: 3} ]
   breakpoints: ?Array,
+
+  // the margin between children inside the layout in px, [x, y]
+  margin: ?[number, number] = [10, 10],
+
 ```
 
 #### Child component inside the layout

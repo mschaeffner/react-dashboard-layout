@@ -19,7 +19,7 @@ const breakpoints = [
 
 
 export default () =>
-  <ReactDashboardLayout cols={8} breakpoints={breakpoints}>
+  <ReactDashboardLayout cols={8} breakpoints={breakpoints} margin={[0, 0]}>
 
     <Tile
       data-grid={{w:2, h:3}}

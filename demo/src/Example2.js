@@ -12,7 +12,7 @@ const style = {
 
 
 export default () =>
-  <ReactDashboardLayout cols={12} rows={12}>
+  <ReactDashboardLayout cols={12} rows={12} margin={[8, 4]}>
 
     <Tile
       data-grid={{w:3, h:6}}

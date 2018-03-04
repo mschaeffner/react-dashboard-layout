@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 
 
 const DEFAULT_NO_OF_COLS = 12
+const DEFAULT_CELL_MARGIN_X = 10
+const DEFAULT_CELL_MARGIN_Y = 10
 
 const DEFAULT_CHILD_HEIGHT = 1
 const DEFAULT_CHILD_WIDTH = 1
@@ -42,6 +44,21 @@ const getBreakpointForWidth = ({breakpoints, layoutWidth}) => {
     return breakPoint || sortedBreakpoints[sortedBreakpoints.length-1]
   } else {
     return null
+  }
+}
+
+
+const getCellMargin = (marginProp) => {
+  if(marginProp && marginProp.length === 2) {
+    return {
+      x: (typeof marginProp[0] === 'number') ? marginProp[0] : DEFAULT_CELL_MARGIN_X,
+      y: (typeof marginProp[1] === 'number') ? marginProp[1] : DEFAULT_CELL_MARGIN_Y,
+    }
+  } else {
+    return {
+      x: DEFAULT_CELL_MARGIN_X,
+      y: DEFAULT_CELL_MARGIN_Y
+    }
   }
 }
 
@@ -90,9 +107,12 @@ export default class ReactDashboardLayout extends React.Component {
       breakpoints: this.props.breakpoints,
       layoutWidth: this.state.width
     })
-    
+
     // determine number of columns for the layout
     const layoutCols = breakpoint ? breakpoint.cols : (this.props.cols || DEFAULT_NO_OF_COLS)
+
+    // get margin between cells
+    const cellMargin = getCellMargin(this.props.margin)
 
     // calculate current width and height of a cell
     const cellWidth = this.state.width / layoutCols
@@ -147,10 +167,10 @@ export default class ReactDashboardLayout extends React.Component {
           boxSizing: 'border-box',
           overflow: 'hidden',
           position: 'absolute',
-          left: (childPosition.left * cellWidth),
-          width: (childWidth * cellWidth) + 'px',
-          top: (childPosition.top * cellHeight),
-          height: (childHeight * cellHeight) + 'px',
+          left: (childPosition.left * cellWidth) + cellMargin.x,
+          width: (childWidth * cellWidth - cellMargin.x) + 'px',
+          top: (childPosition.top * cellHeight) + cellMargin.y,
+          height: (childHeight * cellHeight - cellMargin.y) + 'px',
         }
 
         // clone and return child component with new style propeties

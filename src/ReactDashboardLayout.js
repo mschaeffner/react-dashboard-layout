@@ -39,9 +39,9 @@ const calculateChildPosition = ({grid, minRow, childWidth}) => {
 
 const getBreakpointForWidth = ({breakpoints, layoutWidth}) => {
   if(breakpoints && breakpoints.length) {
-    const sortedBreakpoints = breakpoints.sort((a,b) => a.width - b.width)
-    const breakPoint = sortedBreakpoints.find(x => layoutWidth <= x.width)
-    return breakPoint || sortedBreakpoints[sortedBreakpoints.length-1]
+    const sortedBreakpoints = breakpoints.sort((a,b) => b.width - a.width)
+    const breakPoint = sortedBreakpoints.find(x => layoutWidth >= x.width)
+    return breakPoint || sortedBreakpoints[0]
   } else {
     return null
   }

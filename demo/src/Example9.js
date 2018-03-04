@@ -12,9 +12,10 @@ const style = {
 
 
 const breakpoints = [
-  { width: 768, cols: 6 },
   { width: 1024, cols: 12 },
-  { width: 480, cols: 3 },
+  { width: 768, cols: 8 },
+  { width: 480, cols: 4 },
+  { width: 0, cols: 2 },
 ]
 
 

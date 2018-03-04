@@ -2,16 +2,12 @@
 
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
 
 [build-badge]: https://img.shields.io/travis/mschaeffner/react-dashboard-layout/master.png?style=flat-square
 [build]: https://travis-ci.org/mschaeffner/react-dashboard-layout
 
 [npm-badge]: https://img.shields.io/npm/v/react-dashboard-layout.png?style=flat-square
 [npm]: https://www.npmjs.org/package/react-dashboard-layout
-
-[coveralls-badge]: https://img.shields.io/coveralls/mschaeffner/react-dashboard-layout/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/mschaeffner/react-dashboard-layout
 
 
 ## Install

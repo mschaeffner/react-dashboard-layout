@@ -80,6 +80,10 @@ export default class ReactDashboardLayout extends React.Component {
     this.onWindowResize()
   }
 
+  componentDidUpdate() {
+    this.onWindowResize()
+  }
+
   componentWillUnmount() {
     this.mounted = false
     window.removeEventListener("resize", this.onWindowResize)
@@ -89,10 +93,12 @@ export default class ReactDashboardLayout extends React.Component {
     if (this.mounted) {
       const node = ReactDOM.findDOMNode(this)
       if (node instanceof HTMLElement) {
-        this.setState({
-          width: node.offsetWidth,
-          height: node.offsetHeight
-        })
+        if(node.offsetWidth !== this.state.width || node.offsetHeight !== this.state.height) {
+          this.setState({
+            width: node.offsetWidth,
+            height: node.offsetHeight
+          })
+        }
       }
     }
   }

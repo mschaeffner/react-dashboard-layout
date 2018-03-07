@@ -177,8 +177,9 @@ export default class ReactDashboardLayout extends React.Component {
         return React.cloneElement(child, {style, key: 'child-'+i})
     })
 
+    const layoutHeight = (cellHeight * grid.length) + 'px'
     return (
-      <div style={{boxSizing: 'border-box', width: '100%', height: '100%', position: 'relative'}}>
+      <div style={{boxSizing: 'border-box', height: layoutHeight, position: 'relative'}}>
         {children}
       </div>
     )

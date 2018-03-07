@@ -167,9 +167,9 @@ export default class ReactDashboardLayout extends React.Component {
           boxSizing: 'border-box',
           overflow: 'hidden',
           position: 'absolute',
-          left: (childPosition.left * cellWidth) + cellMargin.x,
+          left: (childPosition.left * cellWidth) + (cellMargin.x / 2),
           width: (childWidth * cellWidth - cellMargin.x) + 'px',
-          top: (childPosition.top * cellHeight) + cellMargin.y,
+          top: (childPosition.top * cellHeight) + (cellMargin.y / 2),
           height: (childHeight * cellHeight - cellMargin.y) + 'px',
         }
 

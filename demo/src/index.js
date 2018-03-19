@@ -10,6 +10,7 @@ import Example6 from './Example6'
 import Example7 from './Example7'
 import Example8 from './Example8'
 import Example9 from './Example9'
+import Example10 from './Example10'
 
 
 const examples = [
@@ -22,6 +23,7 @@ const examples = [
   { name: 'Example 7', component: Example7 },
   { name: 'Example 8', component: Example8 },
   { name: 'Example 9', component: Example9 },
+  { name: 'Example 10', component: Example10 },
 ]
 
 

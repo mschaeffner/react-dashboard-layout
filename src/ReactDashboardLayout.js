@@ -67,6 +67,7 @@ export default class ReactDashboardLayout extends React.Component {
 
   constructor(props) {
     super(props)
+    this.myRef = React.createRef()
     this.state = {
       width: 1280,
       height: 800
@@ -91,7 +92,7 @@ export default class ReactDashboardLayout extends React.Component {
 
   onWindowResize = () => {
     if (this.mounted) {
-      const node = ReactDOM.findDOMNode(this)
+      const node = this.myRef.current
       if (node instanceof HTMLElement) {
         if(node.offsetWidth !== this.state.width || node.offsetHeight !== this.state.height) {
           this.setState({
@@ -105,7 +106,7 @@ export default class ReactDashboardLayout extends React.Component {
 
   render() {
     if (!this.mounted) {
-      return <div style={{width:'100%', height:'100%'}} />
+      return <div ref={this.myRef} style={{width:'100%', height:'100%'}} />
     }
 
     // find breakpoint for current layout width
@@ -185,7 +186,7 @@ export default class ReactDashboardLayout extends React.Component {
     const layoutHeight = (this.props.rows) ? '100%' : (cellHeight * grid.length) + 'px'
 
     return (
-      <div style={{boxSizing: 'border-box', height: layoutHeight, position: 'relative'}}>
+      <div ref={this.myRef} style={{boxSizing: 'border-box', height: layoutHeight, position: 'relative'}}>
         {children}
       </div>
     )
